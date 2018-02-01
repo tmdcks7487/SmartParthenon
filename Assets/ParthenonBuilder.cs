@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class ParthenonBuilder : MonoBehaviour
 {
@@ -33,6 +34,19 @@ public class ParthenonBuilder : MonoBehaviour
 
        
 
+    }
+
+    [ContextMenu("Destroy All")]
+    void DestroyAllChildren()
+    {   //새로운 array생성??
+        foreach (Transform t in transform.Cast<Transform>().ToArray())
+        {
+            DestroyImmediate(t.gameObject);
+        }
+        // foreach(Transform t in ~) - in뒤에 있는 배열에 있는 항목을 꺼내서 t에 넣고 실행
+        //cube A(g.o) - go1,go2,go3(자식들)
+        //모든 g.o는 transform(component)이 있다. 생성되면 transform이 array로 생성된다. (a.transform, go1.transform~)
+        //삭제할때 for i =0 ; i<transform.childCount;i++ 이렇게 하면 띄엄띄엄 삭제하는 경우가 있기 떄문에
     }
 
 
